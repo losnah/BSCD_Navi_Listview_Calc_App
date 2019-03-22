@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CheckBox mLockCheckbox;
     private DrawerLayout drawerLayout;
     private ListView mDrawerListView;
+    Intent intent;
 
     private Context mContext;
 
@@ -36,20 +38,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, items) ;
         mDrawerListView.setAdapter(adapter) ;
 
+
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent;
-
-                switch (position){
-                    case 0 :
-                        intent = new Intent(mContext,ListView.class);
-                        startActivity(intent);
-                        break;
-                    case 1:
-                        intent = new Intent(mContext,CalcActivity.class);
-                        startActivity(intent);
-                        break;
+                if(position == 0) {
+                    Intent intent = new Intent(mContext, ListviewActivity.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(mContext, CalcActivity.class);
+                    startActivity(intent);
                 }
             }
         });
