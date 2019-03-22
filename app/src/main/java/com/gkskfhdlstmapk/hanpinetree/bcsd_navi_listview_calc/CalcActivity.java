@@ -2,6 +2,7 @@ package com.gkskfhdlstmapk.hanpinetree.bcsd_navi_listview_calc;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 
 public class CalcActivity extends AppCompatActivity {
 
@@ -9,5 +10,13 @@ public class CalcActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc);
+
+        init();
+    }
+
+    private void init(){
+
+
+
     }
 }
