@@ -1,10 +1,14 @@
 package com.gkskfhdlstmapk.hanpinetree.bcsd_navi_listview_calc;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.StringTokenizer;
 
 public class CalcActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,6 +33,8 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
     private Button mButtonMulti;
     private Button mButtonDiv;
 
+    private Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +45,7 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void init(){
+        mContext = getApplicationContext();
         mButton0 = (Button)findViewById(R.id.activity_calc_0_button);
         mButton1 = (Button)findViewById(R.id.activity_calc_1_button);
         mButton2 = (Button)findViewById(R.id.activity_calc_2_button);
@@ -80,6 +87,39 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         mButtonDiv.setOnClickListener(this);
 
     }
+
+    public int calculaeResult(StringBuilder str){
+
+        int result = 0;
+        int intBuffer = 0;
+        String stringBuffer = "";
+
+        StringTokenizer st = new StringTokenizer(str.toString());
+        for(int i = 0; i < st.countTokens(); i++){
+            stringBuffer = st.nextToken();
+            switch (stringBuffer){
+                case "+":
+                    break;
+                case "-":
+                    break;
+                case "x":
+                    break;
+                case "/":
+                    break;
+
+                    default:
+                        intBuffer = Integer.parseInt(stringBuffer);
+                        break;
+            }
+        }
+
+//        switch (st.nextToken()){
+//
+//        }
+
+        return result;
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -126,19 +166,19 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
                 break;
                 //activity_calc_plus_button
             case R.id.activity_calc_plus_button:
-                mUpdateText.append("+");
+                mUpdateText.append(" + ");
                 mUpdateTextview.setText(mUpdateText);
                 break;
             case R.id.activity_calc_minus_button:
-                mUpdateText.append("-");
+                mUpdateText.append(" - ");
                 mUpdateTextview.setText(mUpdateText);
                 break;
             case R.id.activity_calc_multi_button:
-                mUpdateText.append("x");
+                mUpdateText.append(" x ");
                 mUpdateTextview.setText(mUpdateText);
                 break;
             case R.id.activity_calc_div_button:
-                mUpdateText.append("/");
+                mUpdateText.append(" / ");
                 mUpdateTextview.setText(mUpdateText);
                 break;
 
@@ -147,7 +187,7 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
                 mUpdateTextview.setText(mUpdateText);
                 break;
             case R.id.activity_calc_result_button:
-                //계산하는 함수 하나 만드세용~
+                calculaeResult(mUpdateText);
                 mUpdateTextview.setText(mUpdateText);
                 break;
 
