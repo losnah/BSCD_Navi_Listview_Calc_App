@@ -21,10 +21,10 @@ public class ListItemView extends LinearLayout {
     }
 
     public void init(Context context){
-        mViewText = (TextView)findViewById(R.id.listview_item_textview);
-
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.listview_item, this, true);
+
+        mViewText = (TextView)findViewById(R.id.listview_item_textview);//객체화된 listview_item내의 mViewTextView를 가져오는 것이므로 이를 뒤에 둡니다.
 
     }
 
