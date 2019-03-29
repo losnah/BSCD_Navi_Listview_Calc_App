@@ -116,7 +116,7 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
                 return a+b;
             case '-':
                 return a-b;
-            case '*':
+            case 'x':
                 return a*b;
             case '/':
                 return a/b;
@@ -193,6 +193,8 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.activity_calc_result_button:
                 int calResult = calculaeResult(mUpdateText);
+                mUpdateText.setLength(0);
+                mUpdateText.append(Integer.toString(calResult));
                 mUpdateTextview.setText(calResult+"");
                 break;
 
