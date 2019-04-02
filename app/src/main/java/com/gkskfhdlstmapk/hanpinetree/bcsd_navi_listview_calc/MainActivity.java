@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         init();
 
-        final String[] items = {"A menu","B menu"};
+        final String[] items = {"A menu","B menu","Timer"};
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, items) ;
         mDrawerListView.setAdapter(adapter) ;
 
@@ -42,13 +42,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent;
                 if(position == 0) {
-                    Intent intent = new Intent(mContext, ListviewActivity.class);
-                    startActivity(intent);
-                }else {
-                    Intent intent = new Intent(mContext, CalcActivity.class);
-                    startActivity(intent);
+                    intent = new Intent(mContext, ListviewActivity.class);
+                }else if(position == 1){
+                    intent = new Intent(mContext, CalcActivity.class);
                 }
+                else {
+                   intent = new Intent(mContext, TimerActivity.class);
+                }
+                startActivity(intent);
             }
         });
 
