@@ -18,22 +18,16 @@ import java.util.List;
 public class TimerActivity extends AppCompatActivity {
 
     TextView textView ;
-
     Button start, pause, reset, lap ;
-
     long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L ;
-
     Handler handler;
-
     int Seconds, Minutes, MilliSeconds ;
-
     ListView listView ;
-
     String[] ListElements = new String[] {  };
-
     List<String> ListElementsArrayList ;
-
     ArrayAdapter<String> adapter ;
+    int once = 0 ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +57,7 @@ public class TimerActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 StartTime = SystemClock.uptimeMillis();
-                handler.postDelayed(runnable, 0);
+                handler.postDelayed(runnable,0);
 
                 reset.setEnabled(false);
 
@@ -134,7 +128,12 @@ public class TimerActivity extends AppCompatActivity {
 
             textView.setText("" + Minutes + ":"
                     + String.format("%02d", Seconds) + ":"
-                    + String.format("%03d", MilliSeconds));
+                    + String.format("%02d", MilliSeconds));
+
+            if(Seconds % 10 == 0 && Seconds / 10 > once){
+                ListElementsArrayList.add(Minutes+String.format("%02d", Seconds)+":000");
+                once++;
+            }
 
             handler.postDelayed(this, 0);
         }
