@@ -131,7 +131,7 @@ public class TimerActivity extends AppCompatActivity {
                     + String.format("%02d", MilliSeconds));
 
             if(Seconds % 10 == 0 && Seconds / 10 > once){
-                ListElementsArrayList.add(Minutes+String.format("%02d", Seconds)+":000");
+                ListElementsArrayList.add(Minutes+":"+String.format("%02d", Seconds)+":000");
                 once++;
             }
 
