@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,8 +16,8 @@ import java.util.List;
 
 public class TimerActivity extends AppCompatActivity {
 
-    TextView textView ;
-    Button start, pause, reset, lap ;
+    TextView mTextView ;
+    Button mStart, mPause, mReset ;
     long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L ;
     Handler handler;
     int Seconds, Minutes, MilliSeconds ;
@@ -34,12 +33,11 @@ public class TimerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
-        textView = (TextView)findViewById(R.id.textView);
-        start = (Button)findViewById(R.id.button);
-        pause = (Button)findViewById(R.id.button2);
-        reset = (Button)findViewById(R.id.button3);
-        lap = (Button)findViewById(R.id.button4) ;
-        listView = (ListView)findViewById(R.id.listview1);
+        mTextView = (TextView)findViewById(R.id.activity_timer_time_textview);
+        mStart = (Button)findViewById(R.id.activity_timer_start_button);
+        mPause = (Button)findViewById(R.id.activity_timer_pause_button);
+        mReset = (Button)findViewById(R.id.activity_timer_reset_button);
+        listView = (ListView)findViewById(R.id.activity_timer_listview);
 
         handler = new Handler() ;
 
@@ -52,19 +50,19 @@ public class TimerActivity extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
-        start.setOnClickListener(new View.OnClickListener() {
+        mStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 StartTime = SystemClock.uptimeMillis();
                 handler.postDelayed(runnable,0);
 
-                reset.setEnabled(false);
+                mReset.setEnabled(false);
 
             }
         });
 
-        pause.setOnClickListener(new View.OnClickListener() {
+        mPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -72,12 +70,12 @@ public class TimerActivity extends AppCompatActivity {
 
                 handler.removeCallbacks(runnable);
 
-                reset.setEnabled(true);
+                mReset.setEnabled(true);
 
             }
         });
 
-        reset.setOnClickListener(new View.OnClickListener() {
+        mReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -89,7 +87,7 @@ public class TimerActivity extends AppCompatActivity {
                 Minutes = 0 ;
                 MilliSeconds = 0 ;
 
-                textView.setText("00:00:00");
+                mTextView.setText("00:00:00");
 
                 ListElementsArrayList.clear();
 
@@ -97,16 +95,16 @@ public class TimerActivity extends AppCompatActivity {
             }
         });
 
-        lap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                ListElementsArrayList.add(textView.getText().toString());
-
-                adapter.notifyDataSetChanged();
-
-            }
-        });
+//        lap.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                ListElementsArrayList.add(textView.getText().toString());
+//
+//                adapter.notifyDataSetChanged();
+//
+//            }
+//        });
 
     }
 
@@ -126,7 +124,7 @@ public class TimerActivity extends AppCompatActivity {
 
             MilliSeconds = (int) (UpdateTime % 1000);
 
-            textView.setText("" + Minutes + ":"
+            mTextView.setText("" + Minutes + ":"
                     + String.format("%02d", Seconds) + ":"
                     + String.format("%02d", MilliSeconds));
 
