@@ -16,16 +16,16 @@ import java.util.List;
 
 public class TimerActivity extends AppCompatActivity {
 
-    TextView mTextView ;
-    Button mStart, mPause, mReset ;
-    long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L ;
-    Handler handler;
-    int Seconds, Minutes, MilliSeconds ;
-    ListView listView ;
-    String[] ListElements = new String[] {  };
-    List<String> ListElementsArrayList ;
-    ArrayAdapter<String> adapter ;
-    int once = 0 ;
+    private TextView mTextView ;
+    private Button mStart, mPause, mReset ;
+    private long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L ;
+    private Handler handler;
+    private int Seconds, Minutes, MilliSeconds ;
+    private ListView listView ;
+    private String[] ListElements = new String[] {  };
+    private List<String> ListElementsArrayList ;
+    private ArrayAdapter<String> adapter ;
+    private int once = 0 ;
 
 
     @Override
