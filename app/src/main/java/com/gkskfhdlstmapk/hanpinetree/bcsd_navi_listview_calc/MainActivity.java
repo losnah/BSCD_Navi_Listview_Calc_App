@@ -11,18 +11,26 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button mOpenButton;
-    private Button mCloseButton;
-    private CheckBox mLockCheckbox;
-    private DrawerLayout drawerLayout;
-    private ListView mDrawerListView;
-    Intent intent;
+    @BindView(R.id.activity_main_open_button)
+    Button mOpenButton;
+    @BindView(R.id.activity_main_close_button)
+    Button mCloseButton;
+    @BindView(R.id.activity_main_lock_checkbox)
+    CheckBox mLockCheckbox;
+    @BindView(R.id.activity_main_drawer)
+    DrawerLayout drawerLayout;
+    @BindView(R.id.activity_main_drawer_listview)
+    ListView mDrawerListView;
 
     private Context mContext;
 
@@ -31,10 +39,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ButterKnife.bind(this);
         init();
 
-        final String[] items = {"A menu","B menu","Timer"};
+        final String[] items = {"SimpleListView","Calculator","Timer"};
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, items) ;
         mDrawerListView.setAdapter(adapter) ;
 
@@ -57,14 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
     public void init(){
-        mOpenButton = (Button)findViewById(R.id.activity_main_open_button);
-        mCloseButton = (Button)findViewById(R.id.activity_main_close_button);
-        mLockCheckbox = (CheckBox)findViewById(R.id.activity_main_lock_checkbox);
-        drawerLayout = (DrawerLayout)findViewById(R.id.activity_main_drawer);
-        mDrawerListView = (ListView)findViewById(R.id.activity_main_drawer_listview);
         mContext = getApplicationContext();
-
-
         mOpenButton.setOnClickListener(this);
         mCloseButton.setOnClickListener(this);
         mLockCheckbox.setOnClickListener(this);

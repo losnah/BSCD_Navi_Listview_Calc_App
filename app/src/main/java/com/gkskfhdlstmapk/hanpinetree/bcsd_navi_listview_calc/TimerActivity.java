@@ -95,17 +95,6 @@ public class TimerActivity extends AppCompatActivity {
             }
         });
 
-//        lap.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                ListElementsArrayList.add(textView.getText().toString());
-//
-//                adapter.notifyDataSetChanged();
-//
-//            }
-//        });
-
     }
 
     public Runnable runnable = new Runnable() {
